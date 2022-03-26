@@ -42,4 +42,11 @@ public class JpaMemberRepository implements MemberRepository{
         return result;
     }
 
+    public Optional<Member> findByPassword(String pw) {
+        List<Member> result = em.createQuery("select m from Member m where m.password = :password", Member.class)
+                .setParameter("password", pw)
+                .getResultList();
+        return result.stream().findAny();
+    }
+
 }

@@ -53,6 +53,12 @@ public class JdbcTempleteMemberRepository implements MemberRepository {
         return jdbcTemplate.query("select * from member", memberRowMapper());
     }
 
+    @Override
+    public Optional<Member> findByPassword(String pw) {
+        List<Member> result = jdbcTemplate.query("select * from member where password = ?", memberRowMapper(), pw);
+        return result.stream().findAny();
+    }
+
     private RowMapper<Member> memberRowMapper() {
         return new RowMapper<Member>() {
             @Override
