@@ -5,31 +5,39 @@
 
 <th:block layout:fragment="content">
   <div class="card-content">
-    <form class="form-horizontal" action="/board/write" method="post">
+    <form class="form-horizontal" th:object="${boardOne}" method="get">
       <div class="form-group">
         <label for="title" class="col-sm-2 control-label">제목</label>
         <div class="col-sm-10">
-          <input type="text" id="title" name="title" class="form-control" placeholder="제목을 입력해 주세요." />
+          <td type="text" id="title" name="title" class="form-control" th:text="${boardOne.title}"/>
         </div>
       </div>
 
       <div class="form-group">
         <label for="writer" class="col-sm-2 control-label">이름</label>
         <div class="col-sm-10">
-          <input type="text" id="writer" name="writer" class="form-control" placeholder="이름을 입력해 주세요." />
+          <td type="text" id="writer" name="writer" class="form-control" th:text="${boardOne.writer}"/>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="createDate" class="col-sm-2 control-label">생성날짜</label>
+        <div class="col-sm-10">
+          <td type="text" id="createDate" name="createDate" class="form-control"
+                 th:text="${#temporals.format(boardOne.createDate, 'yyyy-MM-dd HH:mm:ss')}"/>
         </div>
       </div>
 
       <div class="form-group">
         <label for="content" class="col-sm-2 control-label">내용</label>
         <div class="col-sm-10">
-          <textarea id="content" name="content" class="form-control" placeholder="내용을 입력해 주세요."></textarea>
+          <textarea id="content" name="content" class="form-control" th:text="${boardOne.content}"></textarea>
         </div>
       </div>
 
       <div class="btn_wrap text-center">
-        <a th:href="@{/board}" class="btn btn-default waves-effect waves-light">뒤로가기</a>
-        <button type="submit" class="btn btn-primary waves-effect waves-light">저장하기</button>
+        <a th:href="@{/board}" class="btn btn-default waves-effect waves-light">목록으로</a>
+        <button type="submit" class="btn btn-primary waves-effect waves-light">수정하기</button>
       </div>
     </form>
   </div>

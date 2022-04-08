@@ -29,8 +29,10 @@ public class JpaBoardRepository implements BoardRepository{
     }
 
     @Override
-    public Optional<Board> findById(Board board) {
-        return Optional.empty();
+    public Optional<Board> findById(Long id) {
+        Board board = em.find(Board.class, id);
+
+        return Optional.ofNullable(board);
     }
 
     @Override
@@ -38,5 +40,11 @@ public class JpaBoardRepository implements BoardRepository{
         List<Board> result = em.createQuery("select m from Board m", Board.class)
                 .getResultList();
         return result;
+    }
+
+    @Override
+    public Optional<Board> findOne() {
+
+        return Optional.empty();
     }
 }

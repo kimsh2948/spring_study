@@ -36,7 +36,9 @@
       <tbody id="list">
         <tr th:each="boards : ${boards}">
           <td th:text="${boards.id}"></td>
-          <td th:text="${boards.title}"></td>
+          <td>
+            <a th:href="'/board/detail?id='+${boards.id}" th:text="${boards.title}"></a>
+          </td>
           <td th:text="${boards.writer}"></td>
           <td th:text="${#temporals.format(boards.createDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
           <td th:text="${boards.hits}"></td>
