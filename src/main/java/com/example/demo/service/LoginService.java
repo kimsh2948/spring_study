@@ -19,15 +19,15 @@ public class LoginService {
         this.memberRepository = memberRepository;
     }
 
-    public boolean login(Member member){
+    public Member login(Member member){
         Optional<Member> findMember = memberRepository.findByName(member.getName());
 
         if(findMember == null){
-            return false;
+            return null;
         }
         if(!findMember.get().getPassword().equals(member.getPassword())){
-            return false;
+            return null;
         }
-        return true;
+        return findMember.get();
     }
 }

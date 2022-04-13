@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -59,5 +60,16 @@ public class BoardController {
         return "/board/boardDetail";
     }
 
+    @PostMapping("/board/delete")
+    public String delete(@RequestParam() Long id) {
+        try {
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return "redirect:/board";
+    }
 
 }
