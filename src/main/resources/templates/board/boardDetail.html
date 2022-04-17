@@ -5,11 +5,12 @@
 
 <th:block layout:fragment="content">
   <div class="card-content">
-    <form class="form-horizontal" th:object="${boardOne}" method="get">
+    <form class="form-horizontal" th:action="@{'/board/update?id='+${boardOne.id}}" th:object="${updateForm}" method="post">
+      <input type="hidden" name="_method" value="put"/>
       <div class="form-group">
         <label for="title" class="col-sm-2 control-label">제목</label>
         <div class="col-sm-10">
-          <td type="text" id="title" name="title" class="form-control" th:text="${boardOne.title}"/>
+          <input type="text" id="title" name="title" class="form-control" th:value="${boardOne.title}"/><br>
         </div>
       </div>
 
@@ -38,7 +39,7 @@
       <div class="btn_wrap text-center">
         <a th:href="@{/board}" class="btn btn-default waves-effect waves-left">목록으로</a>
         <button type="submit" class="btn btn-primary waves-effect waves-light">수정하기</button>
-        <button type="submit" class="btn btn-primary waves-effect waves-light">삭제하기</button>
+        <button type="button" th:href="@{/board/delete}" class="btn btn-primary waves-effect waves-light">삭제하기</button>
       </div>
     </form>
   </div>

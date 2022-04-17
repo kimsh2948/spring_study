@@ -38,7 +38,7 @@ public class BoardController {
     public String createWriteForm() { return "/board/boardWrite"; }
 
     @PostMapping("/board/write")
-    public String write(BoardWriteForm boardWriteForm) {
+    public String write(@ModelAttribute BoardWriteForm boardWriteForm) {
         Board board = new Board();
         board.setTitle(boardWriteForm.getTitle());
         board.setWriter(boardWriteForm.getWriter());
@@ -58,6 +58,16 @@ public class BoardController {
         model.addAttribute("boardOne", boardOne);
 
         return "/board/boardDetail";
+    }
+
+    @PutMapping("/board/update")
+    public String update(@RequestParam("id") Long id, @ModelAttribute BoardUpdateForm updateForm) {
+        Board updateBoard = boardService.findOne(id).get();
+        updateBoard.setTitle(updateForm.getTitle());
+        updateBoard.setContent(updateForm.getContent());
+        boardService.update(updateBoard.getId());
+
+        return "redirect:/board";
     }
 
     @PostMapping("/board/delete")

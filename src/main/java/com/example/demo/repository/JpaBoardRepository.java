@@ -47,4 +47,10 @@ public class JpaBoardRepository implements BoardRepository{
 
         return Optional.empty();
     }
+
+    @Override
+    public Board deleteById(Long id) {
+
+        return null;
+    }
 }
