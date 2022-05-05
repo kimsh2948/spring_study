@@ -9,9 +9,6 @@ import java.util.Optional;
 @Repository
 public interface BoardRepository {
     Board save(Board board);
-    Board update(Board board);
     Optional<Board> findById(Long id);
     List<Board> findAll();
-    Optional<Board> findOne();
-    Board deleteById(Long id);
 }

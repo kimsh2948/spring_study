@@ -9,7 +9,7 @@
         <link rel="icon" type="image/x-icon" th:href="@{/assets/favicon.ico}" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link rel="stylesheet" th:href="@{/css/home_styles.css}"/>
-        <title>Hello Spring</title>
+        <title>Kakao map</title>
     </head>
     <body>
         <div class="d-flex" id="wrapper">
@@ -55,14 +55,22 @@
                 </nav>
                 <!-- Page content-->
                 <div class="container-fluid">
-                    <h1 class="mt-4">Hello Spring</h1>
-                    <p>test page</p>
+                    <div id="map" style="width:700px; height:500px;"></div>
+                    <script type="text/javascript" th:src="@{//dapi.kakao.com/v2/maps/sdk.js?appkey=6440a4ef9f4ee6abbce915a271ca7aac}"></script>
+                    <script>
+                        var container = document.getElementById('map');
+                        var options = {
+                            center: new kakao.maps.LatLng(33.450701, 126.570667),
+                            level: 3
+                        };
+                        var map = new kakao.maps.Map(container, options);
+                    </script>
                 </div>
             </div>
         </div>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="/scripts/home_scripts.js"></script>
+        <script th:src="@{/scripts/home_scripts.js}"></script>
     </body>
 </html>

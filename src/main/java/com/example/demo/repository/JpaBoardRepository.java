@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
 public class JpaBoardRepository implements BoardRepository{
 
     private final EntityManager em;
@@ -21,11 +20,6 @@ public class JpaBoardRepository implements BoardRepository{
     public Board save(Board board) {
         em.persist(board);
         return board;
-    }
-
-    @Override
-    public Board update(Board board) {
-        return null;
     }
 
     @Override
@@ -42,15 +36,4 @@ public class JpaBoardRepository implements BoardRepository{
         return result;
     }
 
-    @Override
-    public Optional<Board> findOne() {
-
-        return Optional.empty();
-    }
-
-    @Override
-    public Board deleteById(Long id) {
-
-        return null;
-    }
 }

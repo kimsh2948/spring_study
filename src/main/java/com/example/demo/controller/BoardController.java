@@ -70,10 +70,10 @@ public class BoardController {
         return "redirect:/board";
     }
 
-    @PostMapping("/board/delete")
-    public String delete(@RequestParam() Long id) {
+    @DeleteMapping("/board/delete")
+    public String delete(@RequestParam("id") Long id) {
         try {
-
+            boardService.delete(id);
         }
         catch (Exception e){
             e.printStackTrace();

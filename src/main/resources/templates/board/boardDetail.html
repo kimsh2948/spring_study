@@ -39,9 +39,14 @@
       <div class="btn_wrap text-center">
         <a th:href="@{/board}" class="btn btn-default waves-effect waves-left">목록으로</a>
         <button type="submit" class="btn btn-primary waves-effect waves-light">수정하기</button>
-        <button type="button" th:href="@{/board/delete}" class="btn btn-primary waves-effect waves-light">삭제하기</button>
       </div>
     </form>
+    <div class="btn_wrap text-center">
+      <form class="form-horizontal" th:action="@{'/board/delete?id='+${boardOne.id}}" method="post">
+        <input type="hidden" name="_method" value="delete"/>
+        <button class="btn btn-primary waves-effect waves-light">삭제하기</button>
+      </form>
+    </div>
   </div>
 </th:block>
 

@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.domain.Board;
 import com.example.demo.repository.BoardRepository;
+import com.example.demo.repository.SpringDataBoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +14,10 @@ import java.util.Optional;
 @Service
 public class BoardService {
 
-    private final BoardRepository boardRepository;
+    private final SpringDataBoardRepository boardRepository;
 
     @Autowired
-    public BoardService(BoardRepository boardRepository) {
+    public BoardService(SpringDataBoardRepository boardRepository) {
         this.boardRepository = boardRepository;
     }
 
@@ -26,10 +27,14 @@ public class BoardService {
         return board.getId();
     }
 
-    public Optional<Board> update(Long boardId) {
-        Optional<Board> board = boardRepository.findById(boardId);
+    public Optional<Board> update(Long id) {
+        Optional<Board> board = boardRepository.findById(id);
 
         return board;
+    }
+
+    public void delete(Long id){
+        boardRepository.deleteById(id);
     }
 
     public List<Board> findBoard() {
