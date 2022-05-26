@@ -2,7 +2,7 @@ package com.example.demo.config.auth;
 
 import com.example.demo.domain.Role;
 import com.example.demo.domain.User;
-import groovy.transform.builder.Builder;
+import lombok.Builder;
 import lombok.Getter;
 
 import java.util.Map;
