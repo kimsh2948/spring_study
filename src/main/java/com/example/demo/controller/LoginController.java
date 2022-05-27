@@ -21,10 +21,10 @@ public class LoginController {
         this.loginService = loginService;
     }
 
-    @GetMapping("/members/login")
+    @GetMapping("/members/login_form")
     public String createForm() { return "login/loginForm"; }
 
-    @PostMapping("/members/login")
+    @PostMapping("/members/login0")
     public String login(@ModelAttribute LoginForm form, HttpServletRequest request){
         Member member = new Member();
         member.setName(form.getUserName());
