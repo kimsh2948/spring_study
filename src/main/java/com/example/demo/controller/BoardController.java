@@ -1,17 +1,18 @@
 package com.example.demo.controller;
 
+import com.example.demo.config.auth.LoginUser;
+import com.example.demo.config.auth.SessionUser;
 import com.example.demo.domain.Board;
 import com.example.demo.service.BoardService;
-import org.apache.juli.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
+import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class BoardController {
@@ -23,7 +24,7 @@ public class BoardController {
         this.boardService = boardService;
     }
 
-//    @GetMapping("/board")
+    //    @GetMapping("/board")
 //    public String createForm() { return "/board/boardList"; }
     @GetMapping("/board")
     public String list(Model model){
@@ -35,13 +36,16 @@ public class BoardController {
     }
 
     @GetMapping("/board/write")
-    public String createWriteForm() { return "/board/boardWrite"; }
+    public String createWriteForm(Model model, @LoginUser SessionUser user) {
+        model.addAttribute("user", user);
+        return "/board/boardWrite";
+    }
 
     @PostMapping("/board/write")
-    public String write(@ModelAttribute BoardWriteForm boardWriteForm) {
+    public String write(@ModelAttribute BoardWriteForm boardWriteForm, @LoginUser SessionUser user) {
         Board board = new Board();
         board.setTitle(boardWriteForm.getTitle());
-        board.setWriter(boardWriteForm.getWriter());
+        board.setWriter(user.getName());
         board.setContent(boardWriteForm.getContent());
         board.setDeleteYn('N');
         board.setHits(0);

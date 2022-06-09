@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.config.auth.LoginUser;
 import com.example.demo.config.auth.SessionUser;
 import com.example.demo.domain.Member;
 import com.example.demo.service.UserService;
@@ -16,13 +17,10 @@ import javax.servlet.http.HttpSession;
 public class HomeController {
 
     //private final UserService userService;
-    private final HttpSession httpSession;
 
     @GetMapping("/")
-    public String index(Model model) {
+    public String index(Model model, @LoginUser SessionUser user) {
         //model.addAttribute("user", userService.findAll());
-
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
 
         if(user != null){
             model.addAttribute("user", user.getName());
