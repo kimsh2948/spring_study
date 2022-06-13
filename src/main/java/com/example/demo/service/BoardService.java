@@ -42,4 +42,6 @@ public class BoardService {
     }
 
     public Optional<Board> findOne(Long boardId) { return boardRepository.findById(boardId); }
+
+    public List<Board> search(String keyword) { return boardRepository.findByTitleContaining(keyword); }
 }
